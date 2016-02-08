@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.arbrash.ssh.entities.EmployeeEntity" table="employee">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+            <generator class="native" />
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar(255)"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(255)"/>
+        </property>
+        <property name="birth">
+            <column name="birth" sql-type="date"/>
+        </property>
+        <property name="createtime">
+            <column name="createtime" sql-type="datetime"/>
+        </property>
+
+        <many-to-one name="department" lazy="false" fetch="join" class="com.arbrash.ssh.entities.DepartmentEntity">
+            <column name="deptid" />
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+        <bean id="employeeDao" class="com.arbrash.ssh.dao.EmployeeDao">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+
+        <bean id="departmentDao" class="com.arbrash.ssh.dao.DepartmentDao">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+
+        <bean id="employeeService" class="com.arbrash.ssh.service.EmployeeService">
+            <property name="employeeDao" ref="employeeDao"/>
+        </bean>
+
+        <bean id="departmentService" class="com.arbrash.ssh.service.DepartmentService">
+            <property name="departmentDao" ref="departmentDao"/>
+        </bean>
+        <bean id="employeeAction" class="com.arbrash.ssh.actions.EmployeeActions"
+              scope="prototype">
+            <property name="employeeService" ref="employeeService"/>
+            <property name="departmentService" ref="departmentService"/>
+        </bean>
+</beans>
